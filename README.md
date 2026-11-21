@@ -45,11 +45,29 @@ change them in `lib/product.ts`.
 
 ## Swap in the photo
 
-Put the photo in `public/` and change `PHOTO_SRC` in `app/page.tsx`. The box
-stays 240 px tall whatever the image size, so the sizes never jump.
+Put the photo in `public/` and change `PHOTO_SRC` in `app/page.tsx`. Use one
+at least 1125 px wide so it looks sharp on a 3x phone. The box stays 240 px
+tall whatever the image size, so the sizes never jump.
+
+## Speed budget and the steady size grid
+
+`speed-budget.json` holds the three limits from the Web Platform Slow 4G
+Mobile Check Profile: Lighthouse score 90 or more, the size grid moves 0 px
+while the page loads, and size buttons are at least 44 px. To check them:
+
+```bash
+npm run build && npm start   # in one terminal
+npm run check:speed          # in another
+```
+
+See `docs/speed-notes.md` for how each late piece (photo, font, price) has its
+space saved, and `docs/trace-findings.md` for the before and after numbers.
 
 ## What is where
 
+- `speed-budget.json`: the three limits the launch check reads
+- `scripts/check-speed.mjs`: runs Lighthouse and a slowed phone trace and checks the budget
+- `docs/speed-notes.md`, `docs/trace-findings.md`, `docs/trace/`: the budget, the fixes and the results
 - `docs/build-prompt.md`: what Claude Code was asked to build
 - `docs/pegasus-page-first-screen.png`: the first screen at 375 px
 - `app/page.tsx`: the page, top to bottom (photo, name/colorway/price, sizes, details, reviews)

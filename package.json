@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "check:speed": "node scripts/check-speed.mjs"
   },
   "dependencies": {
     "next": "16.4.6",
@@ -17,6 +18,8 @@
     "@types/node": "22.15.0",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
+    "lighthouse": "^13.6.0",
+    "playwright": "^1.63.0",
     "tailwindcss": "4.3.5",
     "typescript": "5.8.3"
   }
