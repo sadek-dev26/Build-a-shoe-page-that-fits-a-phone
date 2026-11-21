@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="480" viewBox="0 0 750 480">
+  <rect width="750" height="480" fill="#f5f5f5"/>
+  <path d="M150 330 C 170 260, 260 250, 330 230 C 380 215, 400 170, 450 175 C 500 180, 520 240, 600 265 C 640 278, 650 310, 630 330 Z" fill="#171717"/>
+  <path d="M150 330 L 630 330 C 630 350, 610 360, 580 360 L 175 360 C 155 360, 145 345, 150 330 Z" fill="#d4ff3a"/>
+  <text x="375" y="420" font-family="Arial, sans-serif" font-size="22" fill="#737373" text-anchor="middle">Product photo placeholder</text>
+</svg>

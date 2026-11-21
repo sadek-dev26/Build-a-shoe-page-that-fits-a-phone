@@ -16,6 +16,23 @@ Open http://localhost:3000. To see it at phone size in Chrome, open DevTools
 set the width to 375. On a real phone on the same Wi-Fi, run
 `npm run dev -- -H 0.0.0.0` and open `http://<your computer's IP>:3000`.
 
+## How each size button looks
+
+Every size is a 48 px tall button in a 3-column grid. The size label (for
+example `M 4 / W 5.5`) is on the first line at 14 px. A second line at 11 px
+shows a note only when there is one. The button's state comes from `in_stock`
+and `low_stock` in the data file.
+
+| State | When | Label | Note | Colors | Tappable |
+| --- | --- | --- | --- | --- | --- |
+| In stock | `in_stock: true`, `low_stock: false` | Size label | none | White background, grey border, near-black text | Yes |
+| Low stock | `in_stock: true`, `low_stock: true` | Size label | "Few left" in orange | White background, grey border, near-black text | Yes |
+| Sold out | `in_stock: false` (even if `low_stock` is true) | Size label, struck through | "Sold out" in light grey | Light grey background and border, light grey text | No: disabled, "not allowed" cursor |
+| Selected | The shopper tapped an in-stock or low-stock size | Size label in white | "Few left" in faded white, if low stock | Near-black background and border | Yes |
+
+Sold-out buttons keep their place and size, so the grid never shifts. Screen
+readers hear the note with the size, for example "M 4 / W 5.5, few left".
+
 ## Use your real data
 
 `data/nike_pegasus_size_stock.json` was rebuilt from an earlier reading of your
@@ -33,6 +50,8 @@ stays 240 px tall whatever the image size, so the sizes never jump.
 
 ## What is where
 
+- `docs/build-prompt.md`: what Claude Code was asked to build
+- `docs/pegasus-page-first-screen.png`: the first screen at 375 px
 - `app/page.tsx`: the page, top to bottom (photo, name/colorway/price, sizes, details, reviews)
 - `components/SizeGrid.tsx`: the 26 size buttons
 - `lib/product.ts`: reads the JSON; price and colorway are read once from the first row

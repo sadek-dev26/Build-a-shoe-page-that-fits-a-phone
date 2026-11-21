@@ -1,0 +1,262 @@
+[
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 1,
+    "size_label": "M 3.5 / W 5",
+    "in_stock": false,
+    "low_stock": false,
+    "stock": 0
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 2,
+    "size_label": "M 4 / W 5.5",
+    "in_stock": true,
+    "low_stock": true,
+    "stock": 4
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 3,
+    "size_label": "M 4.5 / W 6",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 18
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 4,
+    "size_label": "M 5 / W 6.5",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 26
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 5,
+    "size_label": "M 5.5 / W 7",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 34
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 6,
+    "size_label": "M 6 / W 7.5",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 47
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 7,
+    "size_label": "M 6.5 / W 8",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 63
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 8,
+    "size_label": "M 7 / W 8.5",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 88
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 9,
+    "size_label": "M 7.5 / W 9",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 112
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 10,
+    "size_label": "M 8 / W 9.5",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 164
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 11,
+    "size_label": "M 8.5 / W 10",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 198
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 12,
+    "size_label": "M 9 / W 10.5",
+    "in_stock": true,
+    "low_stock": true,
+    "stock": 3
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 13,
+    "size_label": "M 9.5 / W 11",
+    "in_stock": true,
+    "low_stock": true,
+    "stock": 2
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 14,
+    "size_label": "M 10 / W 11.5",
+    "in_stock": false,
+    "low_stock": false,
+    "stock": 0
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 15,
+    "size_label": "M 10.5 / W 12",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 212
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 16,
+    "size_label": "M 11 / W 12.5",
+    "in_stock": true,
+    "low_stock": true,
+    "stock": 5
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 17,
+    "size_label": "M 11.5 / W 13",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 176
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 18,
+    "size_label": "M 12 / W 13.5",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 138
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 19,
+    "size_label": "M 12.5 / W 14",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 84
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 20,
+    "size_label": "M 13 / W 14.5",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 71
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 21,
+    "size_label": "M 13.5 / W 15",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 36
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 22,
+    "size_label": "M 14 / W 15.5",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 29
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 23,
+    "size_label": "M 14.5 / W 16",
+    "in_stock": true,
+    "low_stock": false,
+    "stock": 14
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 24,
+    "size_label": "M 15 / W 16.5",
+    "in_stock": true,
+    "low_stock": true,
+    "stock": 1
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 25,
+    "size_label": "M 15.5 / W 17",
+    "in_stock": false,
+    "low_stock": false,
+    "stock": 0
+  },
+  {
+    "product_name": "Nike Pegasus 43",
+    "price": 140.0,
+    "colorway": "Black/White-Volt",
+    "display_order": 26,
+    "size_label": "M 16 / W 17.5",
+    "in_stock": false,
+    "low_stock": false,
+    "stock": 0
+  }
+]
