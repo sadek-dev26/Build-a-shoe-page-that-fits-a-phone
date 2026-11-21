@@ -16,3 +16,8 @@ This is what was asked of Claude Code to build this page (Farhad Hossain, 21 Nov
 - `components/SizeGrid.tsx`: the 26 size buttons
 - `lib/product.ts`: reads the size and stock JSON
 - `docs/pegasus-page-first-screen.png`: the first screen at 375 px
+
+## Next prompt
+
+The prompt for the Slow 4G phone trace, which checks that the size grid
+stays still while the page loads, is in [trace-prompt.md](trace-prompt.md).

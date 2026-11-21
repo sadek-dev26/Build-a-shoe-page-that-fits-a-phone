@@ -60,13 +60,14 @@ npm run build && npm start   # in one terminal
 npm run check:speed          # in another
 ```
 
-See `docs/speed-notes.md` for how each late piece (photo, font, price) has its
+The prompt for the trace is in `docs/trace-prompt.md`. See `docs/speed-notes.md` for how each late piece (photo, font, price) has its
 space saved, and `docs/trace-findings.md` for the before and after numbers.
 
 ## What is where
 
 - `speed-budget.json`: the three limits the launch check reads
 - `scripts/check-speed.mjs`: runs Lighthouse and a slowed phone trace and checks the budget
+- `docs/trace-prompt.md`: the prompt for the Slow 4G phone trace (screen, network and CPU, what to report)
 - `docs/speed-notes.md`, `docs/trace-findings.md`, `docs/trace/`: the budget, the fixes and the results
 - `docs/build-prompt.md`: what Claude Code was asked to build
 - `docs/pegasus-page-first-screen.png`: the first screen at 375 px
