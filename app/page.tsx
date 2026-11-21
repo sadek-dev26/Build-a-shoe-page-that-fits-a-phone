@@ -3,29 +3,43 @@ import SizeGrid from "@/components/SizeGrid";
 import { formatPrice, product } from "@/lib/product";
 
 // Swap in the real product photo here (put the file in /public).
+// For a sharp photo on a 3x phone, use one at least 1125 px wide.
 const PHOTO_SRC = "/pegasus-43-placeholder.svg";
 
 export default function Page() {
   return (
     <main className="mx-auto w-full max-w-[430px] overflow-x-hidden pb-12">
-      {/* 1. Photo: fixed 240 px box, so nothing below moves when it loads */}
+      {/* 1. Photo: the box is a fixed 240 px tall before any image byte
+          arrives, so nothing below moves when the photo loads late. */}
       <div className="relative h-[240px] w-full bg-neutral-100">
         <Image
+          data-testid="main-photo"
           src={PHOTO_SRC}
           alt={`${product.name} in ${product.colorway}`}
           fill
           priority
-          unoptimized
-          sizes="100vw"
+          // next/image can't resize SVGs. A real JPG/PNG/WebP photo is resized
+          // and sent as WebP/AVIF at the width the phone needs.
+          unoptimized={PHOTO_SRC.endsWith(".svg")}
+          sizes="(max-width: 430px) 100vw, 430px"
           className="object-contain"
         />
       </div>
 
       {/* 2. Name, colorway and price: shown once, not on the buttons */}
       <header className="px-4 pt-4">
-        <h1 className="text-[20px] font-medium leading-[28px]">{product.name}</h1>
-        <p className="text-[14px] leading-[20px] text-neutral-500">{product.colorway}</p>
-        <p className="mt-1 text-[18px] font-semibold leading-[24px]">
+        <h1 className="h-7 truncate text-[20px] font-medium leading-[28px]">{product.name}</h1>
+        {/* Fixed one-line heights: a longer colorway or a late font can't
+            add a line and push the sizes down. */}
+        <p className="h-5 truncate text-[14px] leading-[20px] text-neutral-500">
+          {product.colorway}
+        </p>
+        {/* Fixed 24 px slot: if the price ever loads late (a live price or a
+            sale), it fills this slot instead of pushing the sizes down. */}
+        <p
+          data-testid="price"
+          className="mt-1 h-6 truncate text-[18px] font-semibold leading-[24px] tabular-nums"
+        >
           {formatPrice(product.price)}
         </p>
       </header>

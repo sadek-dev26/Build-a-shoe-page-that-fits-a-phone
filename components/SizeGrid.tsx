@@ -17,7 +17,7 @@ export default function SizeGrid({ sizes }: { sizes: Size[] }) {
         Select size
       </h2>
 
-      <ul className="grid grid-cols-3 gap-2">
+      <ul data-testid="size-grid" className="grid grid-cols-3 gap-2">
         {sizes.map((size) => {
           const isSelected = selected === size.order;
           const note = !size.inStock
@@ -30,6 +30,7 @@ export default function SizeGrid({ sizes }: { sizes: Size[] }) {
             <li key={size.order}>
               <button
                 type="button"
+                data-testid={size.inStock ? "size-button" : "size-button-sold-out"}
                 disabled={!size.inStock}
                 aria-pressed={size.inStock ? isSelected : undefined}
                 aria-label={note ? `${size.label}, ${note.toLowerCase()}` : size.label}
