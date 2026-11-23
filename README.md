@@ -61,7 +61,8 @@ npm run check:speed          # in another
 ```
 
 See `docs/speed-notes.md` for how each late piece (photo, font, price) has its
-space saved, and `docs/trace-findings.md` for the before and after numbers.
+space saved, `docs/trace-findings.md` for the before and after numbers, and
+`docs/trace-prompt.md` for the prompt that runs the Slow 4G trace again.
 
 ## What is where
 
@@ -69,6 +70,7 @@ space saved, and `docs/trace-findings.md` for the before and after numbers.
 - `scripts/check-speed.mjs`: runs Lighthouse and a slowed phone trace and checks the budget
 - `docs/speed-notes.md`, `docs/trace-findings.md`, `docs/trace/`: the budget, the fixes and the results
 - `docs/build-prompt.md`: what Claude Code was asked to build
+- `docs/trace-prompt.md`: what Claude Code is asked to run the Slow 4G phone trace
 - `docs/pegasus-page-first-screen.png`: the first screen at 375 px
 - `app/page.tsx`: the page, top to bottom (photo, name/colorway/price, sizes, details, reviews)
 - `components/SizeGrid.tsx`: the 26 size buttons
