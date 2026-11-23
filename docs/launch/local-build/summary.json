@@ -1,0 +1,37 @@
+{
+  "url": "http://localhost:3000/",
+  "measured_at": "2026-11-23T18:44:11.884Z",
+  "runs": 3,
+  "lighthouse_scores": [
+    100,
+    100,
+    100
+  ],
+  "checks": {
+    "performance_score_min": {
+      "value": 100,
+      "limit": ">= 90",
+      "pass": true
+    },
+    "size_grid_shift_px_max": {
+      "value": "0 px",
+      "limit": "<= 0 px",
+      "pass": true
+    },
+    "size_button_min_px": {
+      "value": "48 px",
+      "limit": ">= 44 px",
+      "pass": true
+    },
+    "watched_elements": {
+      "value": "yes",
+      "limit": "all",
+      "pass": true
+    }
+  },
+  "screenshot": {
+    "file": "docs/launch/local-build/phone-375-size-tapped.png",
+    "size_tapped": "M 10.5 / W 12",
+    "selected": true
+  }
+}

@@ -1,6 +1,12 @@
 # Nike Pegasus 43 phone page
 
+**Live page: https://build-a-shoe-page-that-fits-a-phone.vercel.app**
+
 A Next.js + Tailwind CSS page built from the Pegasus 43 phone page plan.
+Vercel deploys `main` to the live page on every merge.
+
+Stock: all 26 sizes come from the **Pegasus Size and Stock Snapshot,
+8 December 2026**, checked on 23 Nov 2026: 10 in stock, 7 few left, 9 sold out.
 
 ## Run it
 
@@ -33,14 +39,23 @@ and `low_stock` in the data file.
 Sold-out buttons keep their place and size, so the grid never shifts. Screen
 readers hear the note with the size, for example "M 4 / W 5.5, few left".
 
-## Use your real data
+## Stock data
 
-`data/nike_pegasus_size_stock.json` was rebuilt from an earlier reading of your
-file and has **not been checked against the original**. Replace it with your
-real `nike_pegasus_size_stock.json` (same file name). The page reads these
-fields from each row: `display_order`, `size_label`, `in_stock`, `low_stock`,
-`price`, `colorway` and, if present, `product_name`. The file can be a plain
-array of rows or an object with a `sizes` array. If your field names differ,
+`data/nike_pegasus_size_stock.json` is the **Pegasus Size and Stock Snapshot,
+8 December 2026**, copied in unchanged. It was checked on 23 Nov 2026: 26 rows,
+26 different SKUs and display orders 1 to 26, $140 and Black/White-Volt on
+every row, and `in_stock` agrees with `stock_status` on every row.
+
+| Shown as | Snapshot says | Sizes |
+| --- | --- | --- |
+| Sold out (9) | `stock_status: "sold_out"`, 0 pairs | M 4.5, M 6, M 9, M 10, M 11.5, M 14, M 15, M 15.5, M 16 |
+| Few left (7) | `stock_status: "low_stock"`, 1 to 5 pairs | M 3.5, M 4, M 5, M 8.5, M 13, M 13.5, M 14.5 |
+| In stock (10) | `stock_status: "in_stock"`, 9 or more pairs | M 5.5, M 6.5, M 7, M 7.5, M 8, M 9.5, M 10.5, M 11, M 12, M 12.5 |
+
+To use a newer snapshot, replace the file (same name). The page reads
+`display_order`, `size_label`, `in_stock`, `stock_status` (or an older
+`low_stock` flag), `price`, `colorway` and `product_name`. The file can be a
+plain array of rows or an object with a `sizes` array. If field names change,
 change them in `lib/product.ts`.
 
 ## Swap in the photo
@@ -60,6 +75,12 @@ npm run build && npm start   # in one terminal
 npm run check:speed          # in another
 ```
 
+Add `PAGE_URL=https://build-a-shoe-page-that-fits-a-phone.vercel.app/` to
+check the live page instead, and `REPORT_DIR=docs/launch/live` to save the
+worst run's Lighthouse report and a 375 px screenshot with a size tapped.
+`docs/vercel-launch-prompt.md` is the prompt that launches and checks the live
+page.
+
 See `docs/speed-notes.md` for how each late piece (photo, font, price) has its
 space saved, `docs/trace-findings.md` for the before and after numbers, and
 `docs/trace-prompt.md` for the prompt that runs the Slow 4G trace again.
@@ -71,6 +92,8 @@ space saved, `docs/trace-findings.md` for the before and after numbers, and
 - `docs/speed-notes.md`, `docs/trace-findings.md`, `docs/trace/`: the budget, the fixes and the results
 - `docs/build-prompt.md`: what Claude Code was asked to build
 - `docs/trace-prompt.md`: what Claude Code is asked to run the Slow 4G phone trace
+- `docs/vercel-launch-prompt.md`: what Claude Code is asked to put the page live on Vercel and run Lighthouse on the live link
+- `docs/launch/`: Lighthouse reports and the size-tapped phone screenshot (`local-build/` now; `live/` once run against the live link)
 - `docs/pegasus-page-first-screen.png`: the first screen at 375 px
 - `app/page.tsx`: the page, top to bottom (photo, name/colorway/price, sizes, details, reviews)
 - `components/SizeGrid.tsx`: the 26 size buttons
