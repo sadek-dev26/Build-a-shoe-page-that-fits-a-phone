@@ -54,4 +54,5 @@ The check also fails if any of the five watched elements is missing:
 | Name and colorway | A long colorway or a font swap could wrap onto a second line | Fixed one-line heights: 28 px name, 20 px colorway | `app/page.tsx` |
 | Stock data | Hiding sold-out sizes would change the grid's shape and move the buttons under a thumb | Sold-out sizes stay as full-size 48 px buttons, greyed out and disabled | `components/SizeGrid.tsx` |
 
-Results are in [trace-findings.md](trace-findings.md).
+Results are in [trace-findings.md](trace-findings.md). The prompt that asks
+Claude Code to run this trace is in [trace-prompt.md](trace-prompt.md).
