@@ -10,6 +10,8 @@ type Row = {
   size_label: string;
   in_stock: boolean;
   low_stock?: boolean;
+  // 8 December 2026 snapshot: "in_stock" | "low_stock" | "sold_out"
+  stock_status?: string;
 };
 
 export type Size = {
@@ -43,8 +45,9 @@ export const product: Product = {
     .map((r) => ({
       order: r.display_order,
       label: r.size_label,
-      inStock: r.in_stock,
-      lowStock: r.in_stock && Boolean(r.low_stock),
+      inStock: r.in_stock && r.stock_status !== "sold_out",
+      lowStock:
+        r.in_stock && (r.stock_status === "low_stock" || Boolean(r.low_stock)),
     })),
 };
 

@@ -39,6 +39,9 @@ npm run build && npm start        # terminal 1
 npm run check:speed               # terminal 2: 3 runs, exits 1 on any FAIL
 LATE_PHOTO_MS=2500 npm run check:speed            # also hold the photo back 2.5 s
 TRACE_OUT=trace.json npm run check:speed          # also save a Chrome trace
+REPORT_DIR=docs/launch/live \
+  PAGE_URL=https://build-a-shoe-page-that-fits-a-phone.vercel.app/ \
+  npm run check:speed   # check the live page; save the Lighthouse report and a size-tapped screenshot
 ```
 
 The check also fails if any of the five watched elements is missing:

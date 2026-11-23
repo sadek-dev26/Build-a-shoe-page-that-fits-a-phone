@@ -12,7 +12,7 @@
 //     the size grid's top edge every frame from first paint to fully loaded
 //     and measures every size button.
 // Exits with code 1 if any budget is broken or a watched element is missing.
-import { readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { chromium } from "playwright";
 import lighthouse from "lighthouse";
 
@@ -24,6 +24,12 @@ const LATE_PHOTO_MS = Number(process.env.LATE_PHOTO_MS ?? 0);
 // Save a Chrome performance trace of the first slowed run. Open it in
 // Chrome DevTools > Performance > Load profile.
 const TRACE_OUT = process.env.TRACE_OUT;
+// Save the worst run's Lighthouse report (HTML and JSON) in this folder,
+// plus a 375 px phone screenshot with a size tapped
+// (REPORT_DIR=docs/launch npm run check:speed).
+const REPORT_DIR = process.env.REPORT_DIR;
+// The size to tap for the screenshot.
+const TAP_SIZE = process.env.TAP_SIZE ?? "M 10.5 / W 12";
 const budget = JSON.parse(readFileSync(new URL("../speed-budget.json", import.meta.url)));
 
 const SCREEN = { width: 375, height: 812, deviceScaleFactor: 3, mobile: true, disabled: false };
@@ -47,9 +53,11 @@ async function lighthouseRun() {
   const port = 9300 + Math.floor(Math.random() * 500);
   const browser = await chromium.launch({ args: [`--remote-debugging-port=${port}`] });
   try {
-    const r = await lighthouse(PAGE_URL, { port, output: "json", logLevel: "error" }, { extends: "lighthouse:default", settings: LH_SETTINGS });
+    const r = await lighthouse(PAGE_URL, { port, output: ["html", "json"], logLevel: "error" }, { extends: "lighthouse:default", settings: LH_SETTINGS });
     const a = r.lhr.audits;
     return {
+      report: r.report,
+      fetchTime: r.lhr.fetchTime,
       score: Math.round(r.lhr.categories.performance.score * 100),
       lcpMs: a["largest-contentful-paint"].numericValue,
       cls: a["cumulative-layout-shift"].numericValue,
@@ -156,6 +164,29 @@ for (let i = 0; i < RUNS; i++) {
   lh.push(await lighthouseRun());
   tr.push(await traceRun(i === 0 ? TRACE_OUT : undefined));
 }
+async function tappedScreenshot(path) {
+  const browser = await chromium.launch();
+  const context = await browser.newContext({
+    viewport: { width: SCREEN.width, height: SCREEN.height },
+    deviceScaleFactor: SCREEN.deviceScaleFactor,
+    isMobile: true,
+    hasTouch: true,
+  });
+  const page = await context.newPage();
+  await page.goto(PAGE_URL, { waitUntil: "networkidle" });
+  const button = page.locator('[data-testid="size-button"]', { hasText: TAP_SIZE }).first();
+  await button.tap();
+  const pressed = await button.getAttribute("aria-pressed");
+  // Scroll so the price and the whole size grid are on screen.
+  await page.evaluate(() => {
+    const top = document.querySelector('[data-testid="price"]').getBoundingClientRect().top;
+    window.scrollTo(0, window.scrollY + top - 16);
+  });
+  await page.screenshot({ path });
+  await browser.close();
+  return pressed === "true";
+}
+
 const med = (arr, k) => [...arr.map((r) => r[k])].sort((a, b) => a - b)[Math.floor(arr.length / 2)];
 const worst = (arr, k) => Math.max(...arr.map((r) => r[k]));
 const least = (arr, k) => Math.min(...arr.map((r) => r[k]));
@@ -185,5 +216,24 @@ if (bad && bad.gridMove > 0) {
   console.log("\nSize grid top edge over time (worst run):");
   for (const t of bad.gridTops) console.log(`  ${t.at} ms: ${t.top} px`);
 }
-if (process.env.JSON_OUT) writeFileSync(process.env.JSON_OUT, JSON.stringify({ checks, lh, tr }, null, 2));
+if (REPORT_DIR) {
+  mkdirSync(REPORT_DIR, { recursive: true });
+  const worstLh = lh.find((r) => r.score === least(lh, "score"));
+  const [html, json] = worstLh.report;
+  writeFileSync(`${REPORT_DIR}/lighthouse-report.html`, html);
+  writeFileSync(`${REPORT_DIR}/lighthouse-report.json`, json);
+  const shot = `${REPORT_DIR}/phone-375-size-tapped.png`;
+  const tapped = await tappedScreenshot(shot);
+  const summary = {
+    url: PAGE_URL,
+    measured_at: worstLh.fetchTime,
+    runs: RUNS,
+    lighthouse_scores: lh.map((r) => r.score),
+    checks: Object.fromEntries(checks.map(([key, , value, limit, pass]) => [key, { value, limit, pass }])),
+    screenshot: { file: shot, size_tapped: TAP_SIZE, selected: tapped },
+  };
+  writeFileSync(`${REPORT_DIR}/summary.json`, JSON.stringify(summary, null, 2) + "\n");
+  console.log(`\nSaved the worst run's Lighthouse report, summary.json and ${shot} (${TAP_SIZE} tapped) in ${REPORT_DIR}/`);
+}
+if (process.env.JSON_OUT) writeFileSync(process.env.JSON_OUT, JSON.stringify({ checks, lh: lh.map(({ report, ...r }) => r), tr }, null, 2));
 process.exit(checks.every((c) => c[4]) ? 0 : 1);
